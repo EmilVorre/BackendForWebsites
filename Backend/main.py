@@ -2,12 +2,17 @@ from typing import Union, List, Dict
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+from config import settings
+
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    version=settings.PROJECT_VERSION
+)
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -44,9 +49,7 @@ projects = [
         "title": "My Website",
         "description": "Created a personal hobby project: a website about myself, featuring a Python backend and a Vue.js frontend written in TypeScript.",
         "details": "Developed a personal website to promote the projects I’ve worked on and showcase my capabilities. The website is built using Vue.js with TypeScript for the frontend, while the backend is powered by Python and the FastAPI framework, ensuring a fast and scalable experience for users.",
-        "link": ["https://github.com/EmilVorre/AboutMeWebsite",
-                 "https://github.com/EmilVorre/BackendForWebsites"
-                ]
+        "link": ["https://github.com/EmilVorre/AboutMeWebsite"]
     },
     {
         "id": 5,
@@ -54,9 +57,7 @@ projects = [
         "title": "Twitch View Prediction",
         "description": "Currently developing a hobby project combining web scraping and machine learning to create a program that predicts Twitch viewer counts for specific categories.",
         "details": "Currently developing a hobby project to predict Twitch viewer counts for specific categories, built to challenge myself in web scraping, integrating multiple languages into one program, and exploring machine learning. The data processing is written in Rust, the web scraper in Go, the website frontend in Vue.js with TypeScript, and the backend in Python. The program scrapes relevant data and uses machine learning algorithms to analyze trends and make predictions, helping users anticipate viewer engagement for different streams. This project is still under development and aims to improve predictions with more refined models over time.",
-        "link": ["https://github.com/EmilVorre/TwitchViewerPredictionApp",
-                 "https://github.com/EmilVorre/BackendForWebsites"
-                ]
+        "link": ["https://github.com/EmilVorre/TwitchViewerPredictionApp"]
     },
     {
         "id": 6,
